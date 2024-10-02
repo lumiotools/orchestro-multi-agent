@@ -30,7 +30,7 @@ export function ComponentLibrary({ onDragStart }) {
       ],
     },
     {
-      name: "Old Categories",
+      name: "Finance Agents",
       items: [
         {
           name: "Claims Agent",
@@ -52,6 +52,11 @@ export function ComponentLibrary({ onDragStart }) {
           description:
             "Ensures financial transactions match between internal and external records. Flags any mismatches and suggests corrective actions.",
         },
+      ],
+    },
+    {
+      name: "Operations Agents",
+      items: [
         {
           name: "Network Monitoring Agent",
           description:
@@ -67,6 +72,11 @@ export function ComponentLibrary({ onDragStart }) {
           description:
             "Tracks truck performance and schedules maintenance. Optimizes fleet efficiency and fuel consumption.",
         },
+      ],
+    },
+    {
+      name: "Sales Agents",
+      items: [
         {
           name: "Client Acquisition Agent",
           description:
@@ -82,6 +92,11 @@ export function ComponentLibrary({ onDragStart }) {
           description:
             "Analyzes market data and suggests competitive pricing strategies. Provides real-time pricing options to sales teams.",
         },
+      ],
+    },
+    {
+      name: "Customer Support Agents",
+      items: [
         {
           name: "Customer Query Agent",
           description:
@@ -91,31 +106,6 @@ export function ComponentLibrary({ onDragStart }) {
           name: "Claims Resolution Support Agent",
           description:
             "Tracks customer claims, gathers additional information if required, and keeps the customer updated.",
-        },
-        {
-          name: "Contract Review Agent",
-          description:
-            "Automatically reviews contracts, flags risks, and suggests amendments. Ensures compliance with company policies and industry regulations.",
-        },
-        {
-          name: "Compliance Agent",
-          description:
-            "Ensures operations adhere to regulatory standards. Tracks and reports compliance status across departments.",
-        },
-        {
-          name: "Sales Analytics Agent",
-          description:
-            "Provides the sales team with insights into customer behavior and market trends.",
-        },
-        {
-          name: "Operations Analytics Agent",
-          description:
-            "Analyzes logistics performance data and suggests optimization strategies.",
-        },
-        {
-          name: "Financial Analytics Agent",
-          description:
-            "Provides the finance team with insights into costs, profitability, and cash flow.",
         },
       ],
     },

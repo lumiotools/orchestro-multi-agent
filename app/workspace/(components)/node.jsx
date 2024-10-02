@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,7 +15,13 @@ export function Node({
   const nodeRef = useRef(null);
 
   const nodeTypes = {
-    "ai agents": "bg-purple-100 dark:bg-purple-900",
+    discovery: "bg-purple-100 dark:bg-purple-900",
+    "finance agents": "bg-blue-100 dark:bg-blue-900",
+    "operations agents": "bg-green-100 dark:bg-green-900",
+    "sales agents": "bg-yellow-100 dark:bg-yellow-900",
+    "customer support agents": "bg-purple-100 dark:bg-purple-900",
+    "legal and compliance agents": "bg-red-100 dark:bg-red-900",
+    "data and analytics agents": "bg-indigo-100 dark:bg-indigo-900",
   };
 
   useEffect(() => {
