@@ -184,7 +184,7 @@ export function ChatWindow({ isOpen, onClose }) {
                   <div
                     className={`inline-block py-2 px-3 rounded-[10px] ${
                       message.role === "user"
-                        ? "bg-primary text-primary-foreground"
+                        ? "bg-[#1E3A5F] text-white"
                         : "bg-secondary"
                     }`}
                   >
@@ -225,7 +225,7 @@ export function ChatWindow({ isOpen, onClose }) {
                 onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
               />
               <Button
-                className="ml-2"
+                className="ml-2 bg-[#1E3A5F] text-white"
                 onClick={handleSendMessage}
                 disabled={isLoading}
               >
