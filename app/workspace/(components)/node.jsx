@@ -1,7 +1,18 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const colors = [
+  "bg-purple-100 dark:bg-purple-900",
+  "bg-blue-100 dark:bg-blue-900",
+  "bg-green-100 dark:bg-green-900",
+  "bg-yellow-100 dark:bg-yellow-900",
+  "bg-red-100 dark:bg-red-900",
+  "bg-indigo-100 dark:bg-indigo-900",
+  "bg-pink-100 dark:bg-pink-900",
+  "bg-teal-100 dark:bg-teal-900",
+];
 
 export function Node({
   node,
@@ -14,15 +25,10 @@ export function Node({
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const nodeRef = useRef(null);
 
-  const nodeTypes = {
-    discovery: "bg-purple-100 dark:bg-purple-900",
-    "finance agents": "bg-blue-100 dark:bg-blue-900",
-    "operations agents": "bg-green-100 dark:bg-green-900",
-    "sales agents": "bg-yellow-100 dark:bg-yellow-900",
-    "customer support agents": "bg-purple-100 dark:bg-purple-900",
-    "legal and compliance agents": "bg-red-100 dark:bg-red-900",
-    "data and analytics agents": "bg-indigo-100 dark:bg-indigo-900",
-  };
+  const randomColor = useMemo(
+    () => colors[Math.floor(Math.random() * colors.length)],
+    []
+  );
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -91,7 +97,7 @@ export function Node({
   return (
     <Card
       ref={nodeRef}
-      className={`w-48 absolute cursor-move ${nodeTypes[node.type]}`}
+      className={`w-48 absolute cursor-move ${randomColor}`}
       style={{ left: node.x, top: node.y }}
       onMouseDown={handleMouseDown}
       onDoubleClick={handleDoubleClick}
