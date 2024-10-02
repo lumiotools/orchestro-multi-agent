@@ -50,7 +50,7 @@ const CarrierRankingsPopup = ({ rankings, onClose, isLoading }) => {
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
         ) : (
-          <ScrollArea className="h-[300px]">
+          <ScrollArea className="h-[400px]">
             {rankings.map((ranking, index) => (
               <div key={index} className="mb-6">
                 <div className="flex items-center mb-2">
@@ -162,9 +162,9 @@ export function ChatWindow({ isOpen, onClose }) {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={onClose} className="bg-background">
       <DialogContent
-        className={`bg-background border-none ring-0 pt-6 ${
+        className={`bg-[#1A8DBE1A] border-none ring-0 pt-6 ${
           showRankings ? "max-w-[900px]" : ""
         }`}
       >
