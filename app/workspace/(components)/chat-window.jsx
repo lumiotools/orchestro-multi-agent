@@ -15,6 +15,26 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import axios from "axios";
 
 const CarrierRankingsPopup = ({ rankings, onClose }) => {
+  const getRankLabel = (index) => {
+    switch (index) {
+      case 0:
+        return "1st";
+      case 1:
+        return "2nd";
+      case 2:
+        return "3rd";
+      default:
+        return `${index + 1}th`;
+    }
+  };
+
+  const getCarrierName = (ranking) => {
+    const key = Object.keys(ranking).find((key) =>
+      key.includes("ranked_carrier")
+    );
+    return key ? ranking[key] : "Unknown Carrier";
+  };
+
   return (
     <Card className="w-full bg-background border-none">
       <CardHeader className="py-2 flex flex-row items-center justify-between space-y-0">
@@ -25,12 +45,17 @@ const CarrierRankingsPopup = ({ rankings, onClose }) => {
       </CardHeader>
       <CardContent>
         <ScrollArea className="h-[300px]">
-          {rankings.map((carrier, index) => (
-            <div key={index} className="mb-2">
-              <div className="font-semibold">{carrier.name}</div>
-              <div className="text-sm text-muted-foreground">
-                Score: {carrier.score}
+          {rankings.map((ranking, index) => (
+            <div key={index} className="mb-6">
+              <div className="flex items-center mb-2">
+                <div className="mr-2">{getRankLabel(index)}</div>
+                <h3 className="text-lg font-semibold">
+                  {getCarrierName(ranking)}
+                </h3>
               </div>
+              <p className="text-sm text-muted-foreground">
+                {ranking.explanation}
+              </p>
             </div>
           ))}
         </ScrollArea>
