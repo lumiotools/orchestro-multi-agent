@@ -174,7 +174,7 @@ console.log(result);
         >
           <StepForwardIcon className="h-4 w-4" />
         </Button>
-        <Button
+        {/* <Button
           variant="outline"
           size="icon"
           className="bg-[#1E3A5F] hover:bg-[#1E3A5F]"
@@ -185,7 +185,7 @@ console.log(result);
           ) : (
             <SunIcon className="h-4 w-4" />
           )}
-        </Button>
+        </Button> */}
       </div>
       <ChatWindow
         isOpen={isChatWindowOpen}
