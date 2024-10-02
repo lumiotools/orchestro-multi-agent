@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -46,8 +46,8 @@ export function ComponentLibrary({ onDragStart }) {
                   { name: newComponentName, description: "" },
                 ],
               }
-            : category,
-        ),
+            : category
+        )
       );
       setNewComponentName("");
       setSelectedCategory("");
@@ -55,9 +55,7 @@ export function ComponentLibrary({ onDragStart }) {
   };
 
   return (
-    <div
-      className="w-64 bg-card border-r border-border flex flex-col"
-    >
+    <div className="w-64 bg-[#1A8DBE1A] border-r border-border flex flex-col">
       <div className="p-4">
         <Input placeholder="Search components..." />
       </div>
@@ -103,18 +101,19 @@ export function ComponentLibrary({ onDragStart }) {
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full mb-2 p-2 border rounded"
+          className="w-full mb-2 p-2 border rounded bg-[#1E3A5F]"
         >
-          <option value="">
-            Select category
-          </option>
+          <option value="">Select category</option>
           {categories.map((category) => (
             <option key={category.name} value={category.name}>
               {category.name}
             </option>
           ))}
         </select>
-        <Button onClick={handleAddComponent} className="w-full">
+        <Button
+          onClick={handleAddComponent}
+          className="w-full bg-[#1E3A5F] text-white hover:bg-[#1E3A5F]"
+        >
           <PlusIcon className="mr-2 h-4 w-4" /> Add Component
         </Button>
       </div>

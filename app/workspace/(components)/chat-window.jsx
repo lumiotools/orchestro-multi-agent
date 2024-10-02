@@ -89,13 +89,13 @@ export function ChatWindow({ isOpen, onClose }) {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
+    <Dialog open={isOpen} onOpenChange={onClose} className="bg-background">
+      <DialogContent className="sm:max-w-[425px] bg-[#0c171c]">
         <DialogHeader>
           <DialogTitle>Chat with AI</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col h-[400px]">
-          <ScrollArea className="flex-grow p-4">
+          <ScrollArea className="flex-grow">
             {messages.map((message, index) => (
               <div
                 key={index}

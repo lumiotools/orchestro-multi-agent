@@ -86,7 +86,7 @@ console.log(result);
   };
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme("dark");
   };
 
   const handlePlayClick = () => {
@@ -94,7 +94,7 @@ console.log(result);
   };
 
   return (
-    <header className="h-16 border-b border-border flex items-center justify-between px-4">
+    <header className="bg-[#1A8DBE1A] h-16 border-b border-border flex items-center justify-between px-4">
       <div className="flex items-center space-x-2">
         <Input placeholder="Untitled Workflow" className="w-64" />
         <Button variant="ghost" size="icon">
@@ -137,23 +137,49 @@ console.log(result);
         </Dialog>
       </div>
       <div className="flex items-center space-x-2">
-        <Button variant="outline" size="icon">
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-[#1E3A5F] hover:bg-[#1E3A5F]"
+        >
           <UndoIcon className="h-4 w-4" />
         </Button>
-        <Button variant="outline" size="icon">
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-[#1E3A5F] hover:bg-[#1E3A5F]"
+        >
           <RedoIcon className="h-4 w-4" />
         </Button>
         <div className="h-6 w-px bg-border mx-2" />
-        <Button variant="outline" size="icon" onClick={handlePlayClick}>
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-[#1E3A5F] hover:bg-[#1E3A5F]"
+          onClick={handlePlayClick}
+        >
           <PlayIcon className="h-4 w-4" />
         </Button>
-        <Button variant="outline" size="icon">
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-[#1E3A5F] hover:bg-[#1E3A5F]"
+        >
           <PauseIcon className="h-4 w-4" />
         </Button>
-        <Button variant="outline" size="icon">
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-[#1E3A5F] hover:bg-[#1E3A5F]"
+        >
           <StepForwardIcon className="h-4 w-4" />
         </Button>
-        <Button variant="outline" size="icon" onClick={toggleTheme}>
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-[#1E3A5F] hover:bg-[#1E3A5F]"
+          onClick={toggleTheme}
+        >
           {theme === "light" ? (
             <MoonIcon className="h-4 w-4" />
           ) : (

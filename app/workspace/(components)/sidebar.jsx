@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import { Button } from "@/components/ui/button";
@@ -6,9 +6,7 @@ import { HomeIcon, SunIcon, SettingsIcon, HelpCircleIcon } from "lucide-react";
 
 export function Sidebar({ setCurrentPage }) {
   return (
-    <aside
-      className="w-16 bg-card border-r border-border flex flex-col items-center py-4 space-y-4"
-    >
+    <aside className="w-16 bg-[#1A8DBE1A] border-r border-border flex flex-col items-center py-4 space-y-4">
       <Button
         variant="ghost"
         size="icon"

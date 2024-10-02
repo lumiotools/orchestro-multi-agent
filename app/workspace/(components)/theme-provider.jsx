@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { createContext, useState, useEffect } from "react";
 
@@ -10,7 +10,7 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
-      setTheme(savedTheme);
+      setTheme("dark");
     }
   }, []);
 
@@ -20,9 +20,7 @@ export const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider
-      value={{ theme, setTheme }}
-    >
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
