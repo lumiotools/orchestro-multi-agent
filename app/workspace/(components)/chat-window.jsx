@@ -13,8 +13,9 @@ import {
 } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 
-const CarrierRankingsPopup = ({ rankings, onClose }) => {
+const CarrierRankingsPopup = ({ rankings, onClose, isLoading }) => {
   const getRankLabel = (index) => {
     switch (index) {
       case 0:
@@ -44,21 +45,27 @@ const CarrierRankingsPopup = ({ rankings, onClose }) => {
         </Button>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[300px]">
-          {rankings.map((ranking, index) => (
-            <div key={index} className="mb-6">
-              <div className="flex items-center mb-2">
-                <div className="mr-2">{getRankLabel(index)}</div>
-                <h3 className="text-lg font-semibold">
-                  {getCarrierName(ranking)}
-                </h3>
+        {isLoading ? (
+          <div className="flex items-center justify-center h-[300px]">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </div>
+        ) : (
+          <ScrollArea className="h-[300px]">
+            {rankings.map((ranking, index) => (
+              <div key={index} className="mb-6">
+                <div className="flex items-center mb-2">
+                  <div className="mr-2">{getRankLabel(index)}</div>
+                  <h3 className="text-lg font-semibold">
+                    {getCarrierName(ranking)}
+                  </h3>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {ranking.explanation}
+                </p>
               </div>
-              <p className="text-sm text-muted-foreground">
-                {ranking.explanation}
-              </p>
-            </div>
-          ))}
-        </ScrollArea>
+            ))}
+          </ScrollArea>
+        )}
       </CardContent>
     </Card>
   );
@@ -72,6 +79,7 @@ export function ChatWindow({ isOpen, onClose }) {
   const [showButton, setShowButton] = useState(false);
   const [carrierRankings, setCarrierRankings] = useState([]);
   const [showRankings, setShowRankings] = useState(false);
+  const [isRankingLoading, setIsRankingLoading] = useState(false);
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -124,6 +132,8 @@ export function ChatWindow({ isOpen, onClose }) {
   };
 
   const handleCarrierRanking = async () => {
+    setIsRankingLoading(true);
+    setShowRankings(true);
     try {
       const jsonResponse = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/generate-json`,
@@ -144,9 +154,10 @@ export function ChatWindow({ isOpen, onClose }) {
 
       console.log("Shipping response:", shippingResponse.data);
       setCarrierRankings(shippingResponse.data.ranked_vendors);
-      setShowRankings(true);
     } catch (error) {
       console.error("Error processing carrier rankings:", error);
+    } finally {
+      setIsRankingLoading(false);
     }
   };
 
@@ -186,8 +197,16 @@ export function ChatWindow({ isOpen, onClose }) {
                             onClick={handleCarrierRanking}
                             size="sm"
                             className="rounded-[10px]"
+                            disabled={isRankingLoading}
                           >
-                            Carrier Rankings
+                            {isRankingLoading ? (
+                              <>
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                Loading...
+                              </>
+                            ) : (
+                              "Carrier Rankings"
+                            )}
                           </Button>
                         </div>
                       )}
@@ -203,9 +222,7 @@ export function ChatWindow({ isOpen, onClose }) {
                 disabled={isLoading}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type your message..."
-                onKeyPress={(e) =>
-                  e.key === "Enter" && !isLoading && handleSendMessage()
-                }
+                onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
               />
               <Button
                 className="ml-2"
@@ -221,6 +238,7 @@ export function ChatWindow({ isOpen, onClose }) {
               <CarrierRankingsPopup
                 rankings={carrierRankings}
                 onClose={() => setShowRankings(false)}
+                isLoading={isRankingLoading}
               />
             </div>
           )}
