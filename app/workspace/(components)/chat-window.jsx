@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -19,6 +19,15 @@ export function ChatWindow({ isOpen, onClose }) {
   const [isLoading, setIsLoading] = useState(false);
   const [conversationHistory, setConversationHistory] = useState([]);
   const [showButton, setShowButton] = useState(false);
+
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useLayoutEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleSendMessage = async () => {
     if (inputValue.trim()) {
@@ -90,12 +99,12 @@ export function ChatWindow({ isOpen, onClose }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose} className="bg-background">
-      <DialogContent className="sm:max-w-[425px] bg-[#0c171c]">
+      <DialogContent className="sm:max-w-[425px] bg-[#0c171c] border-none ring-0 pt-6">
         <DialogHeader>
           <DialogTitle>Chat with AI</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col h-[400px]">
-          <ScrollArea className="flex-grow">
+          <ScrollArea className="flex-grow p-3">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -123,6 +132,7 @@ export function ChatWindow({ isOpen, onClose }) {
                 </div>
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </ScrollArea>
           <div className="p-4 border-t border-border">
             <div className="flex items-center">
