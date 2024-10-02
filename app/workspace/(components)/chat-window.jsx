@@ -164,7 +164,7 @@ export function ChatWindow({ isOpen, onClose }) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose} className="bg-background">
       <DialogContent
-        className={`bg-[#1A8DBE1A] border-none ring-0 pt-6 ${
+        className={`bg-[#0c171c] border-none ring-0 pt-6 ${
           showRankings ? "max-w-[900px]" : ""
         }`}
       >
