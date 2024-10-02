@@ -27,6 +27,26 @@ export function ComponentLibrary({ onDragStart }) {
           description:
             "An agent that compares different carriers based on various factors such as price, delivery time, and service quality to help users make informed decisions.",
         },
+        {
+          name: "State Coverage Agent",
+          description:
+            "An agent that provides information on the coverage area of different carriers, helping users understand which carriers operate in which states.",
+        },
+        {
+          name: "Customer Sentiment Analysis Agent",
+          description:
+            "An agent that analyzes customer feedback and sentiment to provide insights into customer satisfaction and areas for improvement.",
+        },
+        {
+          name: "Shipping Cost Comparison Agent",
+          description:
+            "An agent that compares shipping costs across different carriers and services to help users find the best rates.",
+        },
+        {
+          name: "Carrier Rate Comparison Agent",
+          description:
+            "An agent that compares carrier rates for different services and locations to help users find the most cost-effective options.",
+        },
       ],
     },
     {
