@@ -15,7 +15,7 @@ import { PlusIcon } from "lucide-react";
 export function ComponentLibrary({ onDragStart }) {
   const [categories, setCategories] = useState([
     {
-      name: "AI Agents",
+      name: "Discovery",
       items: [
         {
           name: "Chat Agent",
@@ -26,6 +26,96 @@ export function ComponentLibrary({ onDragStart }) {
           name: "Carrier Comparison Agent",
           description:
             "An agent that compares different carriers based on various factors such as price, delivery time, and service quality to help users make informed decisions.",
+        },
+      ],
+    },
+    {
+      name: "Old Categories",
+      items: [
+        {
+          name: "Claims Agent",
+          description:
+            "Identifies parcels eligible for claims in the database. Gathers necessary documentation and files claims with carriers. Monitors claim status and provides updates (approval, denial, etc.).",
+        },
+        {
+          name: "Receivables Agent",
+          description:
+            "Tracks outstanding invoices and sends payment reminders. Reconciles incoming payments with the accounting system.",
+        },
+        {
+          name: "Payables Agent",
+          description:
+            "Monitors vendor invoices and prepares payments. Reconciles invoices with services rendered and flags discrepancies.",
+        },
+        {
+          name: "Reconciliation Agent",
+          description:
+            "Ensures financial transactions match between internal and external records. Flags any mismatches and suggests corrective actions.",
+        },
+        {
+          name: "Network Monitoring Agent",
+          description:
+            "Monitors the logistics network, identifying and resolving disruptions. Tracks parcel flow, reroutes trucks when necessary, and ensures timely deliveries.",
+        },
+        {
+          name: "Proactive Logistics Agent",
+          description:
+            "Predicts potential disruptions (e.g., weather, traffic) and takes preventive actions. Communicates with drivers and partners to resolve real-time logistics issues.",
+        },
+        {
+          name: "Fleet Management Agent",
+          description:
+            "Tracks truck performance and schedules maintenance. Optimizes fleet efficiency and fuel consumption.",
+        },
+        {
+          name: "Client Acquisition Agent",
+          description:
+            "Automates the process of identifying and reaching out to potential clients. Tracks lead interactions and suggests follow-ups.",
+        },
+        {
+          name: "Client Relationship Agent",
+          description:
+            "Manages ongoing relationships with existing customers, handling inquiries and upselling.",
+        },
+        {
+          name: "Pricing Agent",
+          description:
+            "Analyzes market data and suggests competitive pricing strategies. Provides real-time pricing options to sales teams.",
+        },
+        {
+          name: "Customer Query Agent",
+          description:
+            "Handles customer inquiries in real-time, pulling shipment data from the database. Escalates complex issues to human agents if needed.",
+        },
+        {
+          name: "Claims Resolution Support Agent",
+          description:
+            "Tracks customer claims, gathers additional information if required, and keeps the customer updated.",
+        },
+        {
+          name: "Contract Review Agent",
+          description:
+            "Automatically reviews contracts, flags risks, and suggests amendments. Ensures compliance with company policies and industry regulations.",
+        },
+        {
+          name: "Compliance Agent",
+          description:
+            "Ensures operations adhere to regulatory standards. Tracks and reports compliance status across departments.",
+        },
+        {
+          name: "Sales Analytics Agent",
+          description:
+            "Provides the sales team with insights into customer behavior and market trends.",
+        },
+        {
+          name: "Operations Analytics Agent",
+          description:
+            "Analyzes logistics performance data and suggests optimization strategies.",
+        },
+        {
+          name: "Financial Analytics Agent",
+          description:
+            "Provides the finance team with insights into costs, profitability, and cash flow.",
         },
       ],
     },
