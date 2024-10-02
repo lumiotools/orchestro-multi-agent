@@ -86,7 +86,7 @@ console.log(result);
   };
 
   const toggleTheme = () => {
-    setTheme("dark");
+    setTheme("light");
   };
 
   const handlePlayClick = () => {
