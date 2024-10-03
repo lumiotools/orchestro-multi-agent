@@ -9,7 +9,7 @@ export const CoverageDataPopup = ({ data, onClose, isLoading }) => {
   const states = Object.keys(data[carriers[0]]);
 
   return (
-    <div className="bg-black text-white rounded-lg shadow-lg p-4 w-full">
+    <div className="bg-gray-900 text-white rounded-lg shadow-lg p-4 w-full">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">State Coverage Comparison</h2>
         <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
@@ -34,9 +34,9 @@ export const CoverageDataPopup = ({ data, onClose, isLoading }) => {
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
         </div>
       ) : (
-        <div className="overflow-x-auto h-[325px]">
+        <div className="overflow-auto custom-scrollbar h-[325px]">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-black">
+            <thead className="bg-gray-900">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   State
@@ -51,7 +51,7 @@ export const CoverageDataPopup = ({ data, onClose, isLoading }) => {
                 ))}
               </tr>
             </thead>
-            <tbody className="bg-black text-white divide-y divide-gray-200">
+            <tbody className="bg-gray-900 text-white divide-y divide-gray-200">
               {states.map((state) => (
                 <tr key={state}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">

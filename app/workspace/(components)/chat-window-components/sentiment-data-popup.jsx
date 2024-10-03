@@ -12,7 +12,7 @@ import {
 } from "recharts";
 import { Loader2 } from "lucide-react";
 
-export default function SentimentDataPopup({ data, onClose, isLoading }) {
+export function SentimentDataPopup({ data, onClose, isLoading }) {
   const attributes = [
     ...new Set(
       Object.values(data).flatMap((carrier) =>
@@ -40,7 +40,7 @@ export default function SentimentDataPopup({ data, onClose, isLoading }) {
   };
 
   return (
-    <div className="bg-gray-900 text-white rounded-lg shadow-lg p-4 w-full max-w-3xl mx-auto">
+    <div className="bg-gray-900 text-white rounded-lg shadow-lg p-4 w-full max-w-3xl">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Customer Sentiment Comparison</h2>
         <button onClick={onClose} className="text-gray-400 hover:text-white">
@@ -65,7 +65,7 @@ export default function SentimentDataPopup({ data, onClose, isLoading }) {
           <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
         </div>
       ) : (
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={325}>
           <RadarChart data={formattedData}>
             <PolarGrid stroke="#4a5568" />
             <PolarAngleAxis dataKey="attribute" tick={{ fill: "#e2e8f0" }} />

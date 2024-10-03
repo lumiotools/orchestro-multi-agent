@@ -369,6 +369,7 @@ export function ChatWindow({ isOpen, onClose }) {
               )}
               {activePopup === "carrierRankings" && (
                 <CarrierRankingsPopup
+                  isLoading={isRankingLoading}
                   rankings={carrierRankings}
                   onClose={handleClosePopup}
                 />

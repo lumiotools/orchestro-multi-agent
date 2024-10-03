@@ -28,7 +28,7 @@ export const CarrierRankingsPopup = ({ rankings, onClose, isLoading }) => {
   };
 
   return (
-    <Card className="w-full bg-background border-none">
+    <Card className="w-full bg-gray-900 border-none">
       <CardHeader className="py-2 flex flex-row items-center justify-between space-y-0">
         <CardTitle className="text-sm font-medium">Carrier Rankings</CardTitle>
         <Button variant="ghost" size="sm" onClick={onClose}>
