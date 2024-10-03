@@ -115,14 +115,24 @@ export function ChatWindow({ isOpen, onClose }) {
           }
         );
 
-        console.log(chatResponse.data);
+        let assistantMessage;
 
-        const assistantMessage = {
-          role: "assistant",
-          content: chatResponse.data.assistant_response,
-          showButton: chatResponse.data.showButton,
-          handleAPI: handleCarrierRanking,
-        };
+        if (chatResponse.data.showButton) {
+          assistantMessage = {
+            role: "assistant",
+            content:
+              "I have found the following carriers that match your requirements.",
+            showButton: chatResponse.data.showButton,
+            handleAPI: handleCarrierRanking,
+          };
+        } else {
+          assistantMessage = {
+            role: "assistant",
+            content: chatResponse.data.assistant_response,
+            showButton: chatResponse.data.showButton,
+            handleAPI: handleCarrierRanking,
+          };
+        }
 
         setMessages((prevMessages) => [...prevMessages, assistantMessage]);
         setConversationHistory(chatResponse.data.conversation_history);
