@@ -15,7 +15,7 @@ import { Loader2 } from "lucide-react";
 
 export const CarrierRatePopup = ({ data, onClose, isLoading }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4 w-full">
+    <div className="bg-black text-white rounded-lg shadow-lg p-4 w-full">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Carrier Rate Comparison</h2>
         <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
@@ -40,7 +40,7 @@ export const CarrierRatePopup = ({ data, onClose, isLoading }) => {
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
         </div>
       ) : (
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={325}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="year" />

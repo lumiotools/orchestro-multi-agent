@@ -34,7 +34,7 @@ export const CoverageDataPopup = ({ data, onClose, isLoading }) => {
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
         </div>
       ) : (
-        <ScrollArea className="max-h-[400px]">
+        <div className="overflow-x-auto h-[325px]">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-black">
               <tr>
@@ -69,7 +69,7 @@ export const CoverageDataPopup = ({ data, onClose, isLoading }) => {
               ))}
             </tbody>
           </table>
-        </ScrollArea>
+        </div>
       )}
     </div>
   );

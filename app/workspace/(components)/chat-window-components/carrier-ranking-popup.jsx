@@ -41,7 +41,7 @@ export const CarrierRankingsPopup = ({ rankings, onClose, isLoading }) => {
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
         ) : (
-          <ScrollArea className="h-[400px]">
+          <ScrollArea className="h-[325px]">
             {rankings.map((ranking, index) => (
               <div key={index} className="mb-6">
                 <div className="flex items-center mb-2">
