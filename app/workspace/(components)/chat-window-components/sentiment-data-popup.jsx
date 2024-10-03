@@ -40,7 +40,7 @@ export function SentimentDataPopup({ data, onClose, isLoading }) {
   };
 
   return (
-    <div className="bg-gray-900 text-white rounded-lg shadow-lg p-4 w-full max-w-3xl">
+    <div className="bg-black rounded-[10px] text-white shadow-lg p-4 w-full max-w-3xl">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Customer Sentiment Comparison</h2>
         <button onClick={onClose} className="text-gray-400 hover:text-white">
