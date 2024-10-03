@@ -94,7 +94,6 @@ export function Canvas({ setSelectedNode, setSelectedConnection }) {
         onDrop={onDrop}
         onDragOver={onDragOver}
         nodeTypes={nodeTypes}
-        fitView
       >
         <Controls />
         {/* <MiniMap style={minimapStyle} zoomable pannable /> */}

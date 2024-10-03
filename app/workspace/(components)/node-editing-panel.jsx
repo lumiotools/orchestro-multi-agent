@@ -43,6 +43,7 @@ export function NodeEditingPanel({ node, onClose, onUpdate }) {
         <div>
           <Label htmlFor="node-description">Description</Label>
           <Textarea
+            className="custom-scrollbar"
             value={node.description}
             onChange={(e) => handleInputChange("description", e.target.value)}
           />
@@ -50,6 +51,7 @@ export function NodeEditingPanel({ node, onClose, onUpdate }) {
         <div>
           <Label htmlFor="node-prompt">AI Prompt</Label>
           <Textarea
+            className="custom-scrollbar"
             value={node.prompt || ""}
             onChange={(e) => handleInputChange("prompt", e.target.value)}
             placeholder="Enter AI prompt here..."

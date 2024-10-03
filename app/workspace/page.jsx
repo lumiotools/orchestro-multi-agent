@@ -42,7 +42,7 @@ export default function Workspace() {
       </ReactFlowProvider>
       {selectedNode && (
         <NodeEditingPanel
-          node={selectedNode}
+          node={selectedNode.data}
           onClose={handleCloseNodePanel}
           onUpdate={handleUpdateNode}
         />
