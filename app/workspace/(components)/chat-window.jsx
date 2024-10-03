@@ -24,6 +24,10 @@ export function ChatWindow({ isOpen, onClose }) {
   const [carrierRankings, setCarrierRankings] = useState([]);
   const [showRankings, setShowRankings] = useState(false);
   const [isRankingLoading, setIsRankingLoading] = useState(false);
+  const [stateCoverageData, setStateCoverageData] = useState({});
+  const [customerSentimentData, setCustomerSentimentData] = useState({});
+  const [shippingCostData, setShippingCostData] = useState([]);
+  const [carrierRateData, setCarrierRateData] = useState([]);
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -56,7 +60,10 @@ export function ChatWindow({ isOpen, onClose }) {
         const assistantMessage = {
           role: "assistant",
           content: chatResponse.data.assistant_response,
+          showButton: chatResponse.data.showButton,
+          handleAPI: handleCarrierRanking,
         };
+
         setMessages((prevMessages) => [...prevMessages, assistantMessage]);
         setConversationHistory(chatResponse.data.conversation_history);
         setShowButton(chatResponse.data.showButton);
@@ -98,10 +105,64 @@ export function ChatWindow({ isOpen, onClose }) {
 
       console.log("Shipping response:", shippingResponse.data);
       setCarrierRankings(shippingResponse.data.ranked_vendors);
+
+      // Fetch data for other APIs
+      await fetchStateCoverageComparison(["UPS", "FedEx"]);
+      await fetchCustomerSentimentComparison(["UPS", "FedEx"]);
+      await fetchShippingCostComparison(["UPS", "FedEx"], 5);
+      await fetchCarrierRateComparison(["UPS", "FedEx"], 4);
     } catch (error) {
       console.error("Error processing carrier rankings:", error);
     } finally {
       setIsRankingLoading(false);
+    }
+  };
+
+  const fetchStateCoverageComparison = async (carriers) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/state-coverage-comparison/`,
+        { carriers }
+      );
+      setStateCoverageData(response.data);
+    } catch (error) {
+      console.error("Error fetching state coverage data:", error);
+    }
+  };
+
+  const fetchCustomerSentimentComparison = async (carriers) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/customer-sentiment-comparison/`,
+        { carriers }
+      );
+      setCustomerSentimentData(response.data);
+    } catch (error) {
+      console.error("Error fetching customer sentiment data:", error);
+    }
+  };
+
+  const fetchShippingCostComparison = async (carriers, num_examples) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/shipping-cost-comparison/`,
+        { carriers, num_examples }
+      );
+      setShippingCostData(response.data.data);
+    } catch (error) {
+      console.error("Error fetching shipping cost data:", error);
+    }
+  };
+
+  const fetchCarrierRateComparison = async (carriers, years) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/carrier-rate-comparison/`,
+        { carriers, years }
+      );
+      setCarrierRateData(response.data.data);
+    } catch (error) {
+      console.error("Error fetching carrier rate data:", error);
     }
   };
 
@@ -133,27 +194,25 @@ export function ChatWindow({ isOpen, onClose }) {
                     }`}
                   >
                     {message.content}
-                    {message.role === "assistant" &&
-                      showButton &&
-                      index === messages.length - 1 && (
-                        <div className="my-3">
-                          <Button
-                            onClick={handleCarrierRanking}
-                            size="sm"
-                            className="rounded-[10px]"
-                            disabled={isRankingLoading}
-                          >
-                            {isRankingLoading ? (
-                              <>
-                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                Loading...
-                              </>
-                            ) : (
-                              "Carrier Rankings"
-                            )}
-                          </Button>
-                        </div>
-                      )}
+                    {message.role === "assistant" && message.showButton && (
+                      <div className="my-3">
+                        <Button
+                          onClick={message.handleAPI}
+                          size="sm"
+                          className="rounded-[10px]"
+                          disabled={isRankingLoading}
+                        >
+                          {isRankingLoading ? (
+                            <>
+                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                              Loading...
+                            </>
+                          ) : (
+                            "Carrier Rankings"
+                          )}
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -163,7 +222,6 @@ export function ChatWindow({ isOpen, onClose }) {
             <div className="flex items-center">
               <Input
                 value={inputValue}
-                disabled={isLoading}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type your message..."
                 onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
@@ -183,6 +241,11 @@ export function ChatWindow({ isOpen, onClose }) {
                 rankings={carrierRankings}
                 onClose={() => setShowRankings(false)}
                 isLoading={isRankingLoading}
+                stateCoverageData={stateCoverageData}
+                customerSentimentData={customerSentimentData}
+                interactiveComparisonData={interactiveComparisonData}
+                shippingCostData={shippingCostData}
+                carrierRateData={carrierRateData}
               />
             </div>
           )}
