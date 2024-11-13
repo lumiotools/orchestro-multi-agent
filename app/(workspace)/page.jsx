@@ -26,7 +26,7 @@ export default function Workspace() {
   const handleUpdateNode = (updatedNode) => {
     // This function will need to be implemented to update the node in the React Flow instance
     console.log("Update node:", updatedNode);
-    setSelectedNode(updatedNode);
+    setSelectedNode({ ...selectedNode, data: updatedNode });
   };
 
   return (
